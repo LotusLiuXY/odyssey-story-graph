@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Script from "next/script";
-import { Geist } from "next/font/google";
+import { Cinzel, Spectral, Noto_Serif_SC } from "next/font/google";
 import { EazoProvider } from "@eazo/sdk/react";
 import { cn } from "@/utils/utils";
 import { Toaster } from "@/components/ui/sonner";
@@ -11,7 +11,21 @@ import { LocaleSyncEffect } from "@/components/i18n/locale-sync-effect";
 import { PreviewInspector } from "@/components/eazo/preview-inspector";
 import { getServerLocale } from "@/lib/i18n/server-preference";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const spectral = Spectral({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
+});
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-heading",
+});
+const notoSerifSC = Noto_Serif_SC({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-serif-sc",
+});
 
 const SITE_URL = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -80,7 +94,13 @@ export default async function RootLayout({
     <html
       lang={locale}
       suppressHydrationWarning
-      className={cn("h-full antialiased", "font-sans", geist.variable)}
+      className={cn(
+        "h-full antialiased",
+        "font-sans",
+        spectral.variable,
+        cinzel.variable,
+        notoSerifSC.variable,
+      )}
     >
       <body
         className="h-full flex flex-col"
