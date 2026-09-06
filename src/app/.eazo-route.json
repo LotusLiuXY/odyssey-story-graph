@@ -1,0 +1,8 @@
+{
+  "route": "",
+  "name": "故事图谱",
+  "nav_type": "tab",
+  "order_index": 0,
+  "icon": "map",
+  "summary": "可缩放拖拽的奥德赛关系图谱主页"
+}
