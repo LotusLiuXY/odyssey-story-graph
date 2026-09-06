@@ -35,6 +35,7 @@ export function GraphCanvas({
 }: CanvasProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [view, setView] = useState<View>({ scale: 1, tx: 0, ty: 0 });
+  const [dragging, setDragging] = useState(false);
   const drag = useRef<{
     x: number;
     y: number;
@@ -56,6 +57,7 @@ export function GraphCanvas({
       ty: view.ty,
       moved: false,
     };
+    setDragging(true);
   };
 
   const onPointerMove = (e: PointerEvent<HTMLDivElement>) => {
