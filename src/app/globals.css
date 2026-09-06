@@ -49,7 +49,7 @@
 }
 
 body {
-  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-sans), "Noto Serif SC", serif;
   /* Kill the ~300ms synthetic click delay on touch devices. */
   touch-action: manipulation;
 }
