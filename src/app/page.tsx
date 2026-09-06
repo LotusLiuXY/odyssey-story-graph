@@ -1,74 +1,193 @@
-// EAZO_TEMPLATE_PLACEHOLDER_PAGE
 "use client";
 
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { UserBadge } from "@/components/user-profile/user-badge";
-import { LanguageSwitcher } from "@/components/i18n/language-switcher";
+import { Info, Layers, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ALL_NODES, PLOT_NODES, type NodeKind } from "@/lib/graph/data";
+import { GraphCanvas } from "@/components/graph/graph-canvas";
+import { DetailDrawer } from "@/components/graph/detail-drawer";
+import { FilterStrip } from "@/components/graph/filter-strip";
+import { LangToggle } from "@/components/graph/lang-toggle";
+import { ShareGraphButton } from "@/components/graph/share-graph-button";
 
-const STEP_KEYS = [
-  "readDocs",
-  "replacePage",
-  "firstFeature",
-  "translations",
-] as const;
+const ALL_KINDS: NodeKind[] = ["plot", "character", "place", "theme"];
 
 export default function Home() {
   const { t } = useTranslation();
+  const [expanded, setExpanded] = useState<Set<string>>(new Set(["p1"]));
+  const [activeKinds, setActiveKinds] = useState<Set<NodeKind>>(
+    new Set(ALL_KINDS),
+  );
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [aboutOpen, setAboutOpen] = useState(false);
+
+  const allExpanded = useMemo(
+    () => PLOT_NODES.every((p) => expanded.has(p.id)),
+    [expanded],
+  );
+
+  const togglePlot = (id: string) => {
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const toggleAll = () => {
+    if (allExpanded) setExpanded(new Set());
+    else setExpanded(new Set(PLOT_NODES.map((p) => p.id)));
+  };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-background">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,theme(colors.orange.500/0.18),transparent_50%)]"
-      />
-
-      <header className="absolute right-4 top-4 z-10 flex items-center gap-2">
-        <LanguageSwitcher />
-        <UserBadge />
+    <main
+      className="parchment-ground relative flex h-full w-full flex-col overflow-hidden"
+      data-el="graph-screen"
+    >
+      {/* Header */}
+      <header
+        className="relative z-10 flex items-start justify-between gap-2 px-4 pb-2"
+        style={{ paddingTop: "max(56px, env(safe-area-inset-top, 0px))" }}
+        data-el="app-header"
+      >
+        <div className="min-w-0">
+          <h1
+            className="truncate font-heading text-lg font-bold leading-tight"
+            style={{ color: "var(--ink)" }}
+          >
+            {t("ui.appTitle")}
+          </h1>
+          <p
+            className="truncate text-xs italic"
+            style={{ color: "var(--ink-soft)" }}
+          >
+            {t("ui.subtitle")}
+          </p>
+        </div>
+        <div className="flex shrink-0 items-center gap-1.5">
+          <button
+            type="button"
+            onClick={() => setAboutOpen(true)}
+            data-el="about-button"
+            aria-label={t("ui.aboutTitle")}
+            className="grid h-9 w-9 place-items-center rounded-full border"
+            style={{
+              borderColor: "var(--ink)",
+              color: "var(--ink)",
+              background: "var(--parchment-warm)",
+            }}
+          >
+            <Info className="h-4 w-4" />
+          </button>
+          <ShareGraphButton />
+          <LangToggle />
+        </div>
       </header>
 
-      <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center gap-10 px-6 py-20 md:px-10">
-        <section className="space-y-4 text-center md:text-left">
-          <span className="inline-flex rounded-full border border-orange-500/20 bg-orange-500/10 px-3 py-1 text-xs font-medium text-orange-600 dark:text-orange-300">
-            {t("starter.badge")}
-          </span>
-          <h1 className="text-4xl font-semibold tracking-tight text-balance md:text-5xl">
-            {t("starter.title")}
-          </h1>
-          <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
-            {t("starter.subtitle")}
-          </p>
-        </section>
+      {/* Filter + expand controls */}
+      <div className="relative z-10 flex items-center gap-2 px-4 pb-2">
+        <div className="min-w-0 flex-1">
+          <FilterStrip activeKinds={activeKinds} onChange={setActiveKinds} />
+        </div>
+        <button
+          type="button"
+          onClick={toggleAll}
+          data-el="toggle-all"
+          className="flex h-8 shrink-0 items-center gap-1 rounded-full border px-2.5 font-heading text-xs font-semibold"
+          style={{
+            borderColor: "var(--ink)",
+            color: allExpanded ? "var(--parchment-warm)" : "var(--ink)",
+            background: allExpanded ? "var(--ink)" : "var(--parchment-warm)",
+          }}
+        >
+          <Layers className="h-3.5 w-3.5" />
+          <span>{allExpanded ? t("ui.collapseAll") : t("ui.expandAll")}</span>
+        </button>
+      </div>
 
-        <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {STEP_KEYS.map((key) => (
-            <article
-              key={key}
-              className="rounded-2xl border bg-card/60 p-5 shadow-sm backdrop-blur"
+      {/* Canvas */}
+      <div className="relative min-h-0 flex-1">
+        <GraphCanvas
+          expanded={expanded}
+          activeKinds={activeKinds}
+          selectedId={selectedId}
+          onTogglePlot={togglePlot}
+          onSelect={setSelectedId}
+        />
+
+        {/* Tap hint */}
+        {selectedId === null && (
+          <div className="pointer-events-none absolute inset-x-0 bottom-3 z-10 flex justify-center px-4">
+            <span
+              className="rounded-full px-3 py-1.5 text-center text-xs font-medium shadow-[0_3px_0_rgba(100,54,49,.18)]"
+              style={{
+                background: "var(--parchment-warm)",
+                color: "var(--ink-soft)",
+                border: "1px solid var(--ink)",
+              }}
             >
-              <h2 className="text-base font-medium">
-                {t(`starter.steps.${key}.title`)}
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                {t(`starter.steps.${key}.desc`)}
-              </p>
-              <code className="mt-4 inline-block rounded-md bg-muted px-2 py-1 text-xs text-muted-foreground">
-                {t(`starter.steps.${key}.code`)}
-              </code>
-            </article>
-          ))}
-        </section>
+              {t("ui.tapHint")}
+            </span>
+          </div>
+        )}
 
-        <section className="rounded-2xl border bg-card/50 p-5 md:p-6">
-          <h3 className="text-sm font-medium">{t("starter.nextCommand.title")}</h3>
-          <p className="mt-2 text-sm text-muted-foreground">
-            {t("starter.nextCommand.desc")}
-          </p>
-          <pre className="mt-4 overflow-x-auto rounded-lg bg-muted p-3 text-sm">
-            <code>{t("starter.nextCommand.command")}</code>
-          </pre>
-        </section>
-      </main>
-    </div>
+        <DetailDrawer
+          nodeId={selectedId}
+          onClose={() => setSelectedId(null)}
+          onSelect={setSelectedId}
+        />
+      </div>
+
+      {/* About sheet */}
+      <AnimatePresence>
+        {aboutOpen && (
+          <>
+            <motion.div
+              className="absolute inset-0 z-40 bg-[rgba(58,25,23,0.3)]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setAboutOpen(false)}
+            />
+            <motion.div
+              className="map-drawer absolute inset-x-0 bottom-0 z-50 rounded-t-[22px] px-5 pb-[max(28px,env(safe-area-inset-bottom,0px))] pt-4"
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ duration: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
+              data-el="about-sheet"
+            >
+              <div className="flex items-start justify-between">
+                <h2
+                  className="font-heading text-xl font-bold"
+                  style={{ color: "var(--ink)" }}
+                >
+                  {t("ui.aboutTitle")}
+                </h2>
+                <button
+                  type="button"
+                  onClick={() => setAboutOpen(false)}
+                  aria-label={t("common.close")}
+                  className="grid h-8 w-8 place-items-center rounded-full text-[var(--ink)]/70 hover:bg-[var(--ink)]/10"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+              <p
+                className="mt-2 text-[15px] leading-relaxed"
+                style={{ color: "var(--ink)" }}
+              >
+                {t("ui.aboutBody")}
+              </p>
+              <p className="mt-3 text-xs" style={{ color: "var(--ink-soft)" }}>
+                {ALL_NODES.length} nodes · {PLOT_NODES.length} plot beats
+              </p>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </main>
   );
 }
