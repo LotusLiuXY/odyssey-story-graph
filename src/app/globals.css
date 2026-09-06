@@ -155,3 +155,71 @@ body {
     @apply font-sans;
   }
 }
+
+/* ── Odyssey parchment world-map utilities ───────────────────────────── */
+.font-heading {
+  font-family: var(--font-heading), "Noto Serif SC", serif;
+}
+
+/* Aged parchment paper fibre — layered noise + vignette over the base ground */
+.parchment-ground {
+  background-color: var(--parchment);
+  background-image:
+    radial-gradient(
+      ellipse at 30% 20%,
+      rgba(239, 224, 188, 0.55),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 75% 85%,
+      rgba(125, 82, 73, 0.18),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      transparent 55%,
+      rgba(58, 25, 23, 0.22) 100%
+    );
+}
+
+.parchment-fiber {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+.map-drawer {
+  background-color: var(--parchment-warm);
+  background-image: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(239, 224, 188, 0.9),
+    var(--parchment-warm) 70%
+  );
+  box-shadow: 0 -18px 36px rgba(58, 25, 23, 0.28);
+}
+
+/* hand-inked dashed route */
+.route-dashed {
+  stroke-dasharray: 2 9;
+  stroke-linecap: round;
+}
+
+@keyframes seal-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) rotate(-6deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+.animate-seal-in {
+  animation: seal-in 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
