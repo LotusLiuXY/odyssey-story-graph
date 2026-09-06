@@ -70,6 +70,7 @@ export function GraphCanvas({
 
   const onPointerUp = () => {
     drag.current = null;
+    setDragging(false);
   };
 
   const onWheel = useCallback((e: React.WheelEvent<HTMLDivElement>) => {
@@ -131,7 +132,7 @@ export function GraphCanvas({
         className="absolute left-0 top-0 h-full w-full origin-center"
         style={{
           transform: `translate(${view.tx}px, ${view.ty}px) scale(${view.scale})`,
-          transition: drag.current ? "none" : "transform 0.12s ease-out",
+          transition: dragging ? "none" : "transform 0.12s ease-out",
         }}
       >
         <EdgeLayer edges={edges} />
