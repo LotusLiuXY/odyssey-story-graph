@@ -1,7 +1,8 @@
 {
-  "name": "nextjs-template",
+  "name": "odyssey-story-graph",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "packageManager": "bun@1.3.9",
   "scripts": {
     "dev": "next dev",
