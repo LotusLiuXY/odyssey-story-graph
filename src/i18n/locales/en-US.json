@@ -3,14 +3,7 @@
     "signIn": "Sign in",
     "signOut": "Sign out",
     "loading": "Loading…",
-    "on": "On",
-    "off": "Off",
-    "close": "Close",
-    "save": "Save",
-    "cancel": "Cancel",
-    "edit": "Edit",
-    "delete": "Delete",
-    "userId": "User ID"
+    "close": "Close"
   },
   "language": {
     "label": "Language",
@@ -34,36 +27,225 @@
       "backHome": "Back to home"
     }
   },
-  "starter": {
-    "badge": "Eazo App Starter",
-    "title": "Build your next app with Eazo",
-    "subtitle": "You now have a clean foundation with auth, data access, and platform integrations ready for your product.",
-    "steps": {
-      "readDocs": {
-        "title": "Read the docs",
-        "desc": "Open AGENTS.md and README.md to understand the template architecture.",
-        "code": "AGENTS.md + README.md"
-      },
-      "replacePage": {
-        "title": "Replace this page",
-        "desc": "Move your product UI into src/components and keep page.tsx thin.",
-        "code": "src/app/page.tsx"
-      },
-      "firstFeature": {
-        "title": "Build your first feature",
-        "desc": "Add API routes under src/app/api and call them from typed helpers.",
-        "code": "src/app/api/*"
-      },
-      "translations": {
-        "title": "Add translations",
-        "desc": "Edit en-US / zh-CN strings in src/i18n/locales. LanguageSwitcher and I18nProvider in layout.tsx are already wired.",
-        "code": "src/i18n/locales/"
-      }
+  "ui": {
+    "appTitle": "The Odyssey · Story Graph",
+    "subtitle": "The ten-year homeward voyage of Odysseus",
+    "filterAll": "All",
+    "filterCharacter": "Characters",
+    "filterPlace": "Places",
+    "filterTheme": "Themes",
+    "tapHint": "Tap a beat to unfold its people, places & themes",
+    "expandAll": "Unfold all",
+    "collapseAll": "Fold all",
+    "reset": "Recenter",
+    "legend": "Legend",
+    "kindPlot": "Plot beat",
+    "kindCharacter": "Character",
+    "kindPlace": "Place",
+    "kindTheme": "Theme",
+    "relations": "Relations",
+    "background": "Background",
+    "quote": "From the epic",
+    "beat": "Beat {{n}} of 5",
+    "aboutTitle": "About this graph",
+    "aboutBody": "Homer's Odyssey follows Odysseus over ten years as he struggles home to Ithaca after the fall of Troy. This graph lays the five main beats of that homeward journey along a hand-inked route; tap any beat to reveal the characters, places, and themes bound to it, then tap a node for its background and original-text highlights.",
+    "share": "Share this graph",
+    "shareCaption": "Reading the whole Odyssey in one map"
+  },
+  "rel": {
+    "spouse": "spouse",
+    "father": "father of",
+    "mother": "mother of",
+    "son": "son",
+    "patron": "divine patron",
+    "protects": "protects",
+    "guides": "guides",
+    "guided": "guided by",
+    "enemy": "sworn enemy",
+    "lover": "lover",
+    "captor": "captor",
+    "ordered_by": "ordered by",
+    "messenger": "messenger to",
+    "blinded_by": "blinded by",
+    "besieged": "besieged by",
+    "suitor": "chief suitor",
+    "slain_by": "slain by",
+    "daughter": "daughter of",
+    "helps": "helps",
+    "host": "host to",
+    "nurse": "old nurse",
+    "recognizes": "recognizes"
+  },
+  "graph": {
+    "p1": {
+      "title": "Leaving Troy",
+      "blurb": "The war is won; the long way home begins.",
+      "detail": "After ten years the wooden-horse stratagem finally topples Troy. Odysseus and his men set sail for Ithaca, but a raid on the Cicones and a storm scatter them off course — the homeward road turns out to be longer than the war itself.",
+      "quote": "\"Sing to me of the man, Muse, the man of twists and turns…\""
     },
-    "nextCommand": {
-      "title": "Next command",
-      "desc": "Start developing and iterate in real time.",
-      "command": "bun dev"
+    "p2": {
+      "title": "The Wanderings",
+      "blurb": "Cyclops, Circe, Sirens — a gauntlet of monsters and gods.",
+      "detail": "The heart of the epic: Odysseus blinds the Cyclops Polyphemus and so earns Poseidon's wrath, is transformed and freed by the witch Circe, sails down to the land of the dead, and threads past the Sirens, Scylla and Charybdis. One by one his crew is lost.",
+      "quote": "\"Nobody — that's my name.\""
+    },
+    "p3": {
+      "title": "Held on Ogygia",
+      "blurb": "Seven years a captive of the nymph Calypso.",
+      "detail": "Shipwrecked and alone, Odysseus washes up on Calypso's island, where the nymph keeps him for seven years and offers him immortality. He refuses, weeping on the shore for home, until Zeus sends Hermes to command his release.",
+      "quote": "\"By day he would sit on the rocks… his eyes never dry.\""
+    },
+    "p4": {
+      "title": "The Phaeacians",
+      "blurb": "A kind court, and the tale told aloud at last.",
+      "detail": "Princess Nausicaa finds the castaway and brings him to her father King Alcinous. At the Phaeacian feast Odysseus finally names himself and recounts his wanderings — the story-within-a-story — before they ferry him home to Ithaca.",
+      "quote": "\"I am Odysseus, son of Laertes, known to the world…\""
+    },
+    "p5": {
+      "title": "Homecoming & Reckoning",
+      "blurb": "Disguised, tested, reunited — the suitors fall.",
+      "detail": "Landing at last in Ithaca, Odysseus enters his own hall disguised as a beggar. He is recognized only by his old nurse and his dog, strings the great bow no suitor can bend, and with Telemachus slays the men besieging Penelope — then proves himself to his faithful wife.",
+      "quote": "\"The great bow sang like a swallow's note.\""
+    },
+
+    "c_odysseus": {
+      "title": "Odysseus",
+      "blurb": "King of Ithaca, the man of many wiles.",
+      "detail": "The epic's hero: cunning, eloquent, and endlessly resourceful, yet also proud and restless. His defining trait is mêtis — craft and intelligence — which saves him where strength alone would fail, but his boast to Polyphemus also brings ten years of divine punishment.",
+      "quote": "\"…the man of twists and turns, driven time and again off course.\""
+    },
+    "c_penelope": {
+      "title": "Penelope",
+      "blurb": "Odysseus' faithful, clever queen.",
+      "detail": "For twenty years she holds the household and fends off scores of suitors, matching her husband in cunning — famously weaving and secretly unravelling a shroud by night to delay them. Her final test of the marriage bed proves the returning stranger is truly Odysseus.",
+      "quote": "\"By day she wove the shroud, by night she unravelled it.\""
+    },
+    "c_telemachus": {
+      "title": "Telemachus",
+      "blurb": "Their son, coming of age in his father's absence.",
+      "detail": "Barely an infant when Odysseus left, Telemachus grows up under the suitors' insolence. Guided by Athena, he sails to seek news of his father — a coming-of-age arc (the 'Telemachy') — and finally stands beside Odysseus in the slaughter of the suitors."
+    },
+    "c_athena": {
+      "title": "Athena",
+      "blurb": "Goddess of wisdom, Odysseus' divine champion.",
+      "detail": "Athena admires Odysseus' intelligence and protects both him and Telemachus throughout, appearing in disguise, pleading his case before Zeus, and engineering the timing of his return. She is the counterweight to Poseidon's hostility.",
+      "quote": "\"…my favourite, for his sharp wits.\""
+    },
+    "c_poseidon": {
+      "title": "Poseidon",
+      "blurb": "God of the sea, Odysseus' relentless enemy.",
+      "detail": "Because Odysseus blinded his son Polyphemus, Poseidon hounds him across the sea with storms and shipwreck, ensuring the journey home takes ten years. He is the story's great obstacle — nature and divine wrath made one.",
+      "quote": "\"…he would not let him reach his home.\""
+    },
+    "c_polyphemus": {
+      "title": "Polyphemus",
+      "blurb": "The man-eating Cyclops, son of Poseidon.",
+      "detail": "In his cave Polyphemus devours several of Odysseus' men, until Odysseus gets him drunk, blinds his single eye, and escapes hidden under the rams. His curse to his father Poseidon sets the whole punishment in motion.",
+      "quote": "\"Nobody is killing me!\""
+    },
+    "c_circe": {
+      "title": "Circe",
+      "blurb": "The enchantress who turns men to swine.",
+      "detail": "On Aeaea, Circe transforms Odysseus' crew into pigs; protected by Hermes' herb, Odysseus resists her and she becomes his ally and lover for a year, finally telling him how to reach the land of the dead."
+    },
+    "c_calypso": {
+      "title": "Calypso",
+      "blurb": "The nymph who keeps Odysseus seven years.",
+      "detail": "On the island of Ogygia she loves Odysseus and offers eternal youth if he will stay. When Zeus commands, she reluctantly frees him and helps him build a raft — desire and temptation set against the pull of home.",
+      "quote": "\"I offered him immortality… yet he longs for home.\""
+    },
+    "c_hermes": {
+      "title": "Hermes",
+      "blurb": "Messenger of the gods.",
+      "detail": "Hermes carries Zeus' order to Calypso to release Odysseus, and earlier gives Odysseus the herb moly to withstand Circe's magic — the divine hinge that turns the plot toward home."
+    },
+    "c_nausicaa": {
+      "title": "Nausicaa",
+      "blurb": "Phaeacian princess who finds the castaway.",
+      "detail": "Guided by Athena to the shore, Nausicaa discovers the shipwrecked Odysseus, clothes and feeds him, and leads him to her father's court — a model of youthful grace and proper hospitality."
+    },
+    "c_alcinous": {
+      "title": "Alcinous",
+      "blurb": "King of the Phaeacians and generous host.",
+      "detail": "Alcinous welcomes the stranger, hosts the feast at which Odysseus tells his tale, and gives him a ship to sail home laden with gifts — the epic's ideal of xenia, guest-friendship."
+    },
+    "c_eurycleia": {
+      "title": "Eurycleia",
+      "blurb": "The old nurse who knows him by his scar.",
+      "detail": "Washing the disguised beggar's feet, the faithful nurse Eurycleia recognizes the boar-hunt scar on Odysseus' thigh — the first mortal to know him — and he swears her to silence until the reckoning is done.",
+      "quote": "\"She knew the scar the moment her hands passed over it.\""
+    },
+    "c_antinous": {
+      "title": "Antinous",
+      "blurb": "The most arrogant of Penelope's suitors.",
+      "detail": "Ringleader of the men eating Odysseus out of house and home and pressing Penelope to remarry, Antinous even plots to kill Telemachus. He is the first suitor to fall to Odysseus' bow."
+    },
+
+    "pl_troy": {
+      "title": "Troy",
+      "blurb": "Where the war ends and the voyage begins.",
+      "detail": "The fallen city of the Trojan War. The Odyssey opens after its destruction; Troy is the point of departure and the shared memory that binds the returning Greek heroes."
+    },
+    "pl_cyclops": {
+      "title": "Island of the Cyclopes",
+      "blurb": "Lawless land of one-eyed giants.",
+      "detail": "A land without laws, ships, or agriculture, where the Cyclopes live in caves. Here Odysseus' curiosity and pride nearly destroy him, and the blinding of Polyphemus earns Poseidon's wrath."
+    },
+    "pl_underworld": {
+      "title": "The Underworld",
+      "blurb": "Land of the dead, sought for prophecy.",
+      "detail": "At Circe's instruction Odysseus sails to the edge of the world to consult the ghost of the seer Tiresias, meeting the shades of his mother, fallen comrades, and famous dead — a journey no living hero takes lightly."
+    },
+    "pl_ogygia": {
+      "title": "Ogygia",
+      "blurb": "Calypso's remote, blossoming island.",
+      "detail": "The 'navel of the sea', a paradise island where Calypso holds Odysseus. Its beauty is a gilded cage — the very comfort that makes his longing for rocky Ithaca all the sharper."
+    },
+    "pl_scheria": {
+      "title": "Scheria",
+      "blurb": "Home of the seafaring Phaeacians.",
+      "detail": "The prosperous, hospitable island of King Alcinous. It is the last stop before Ithaca and the frame within which Odysseus narrates his wanderings."
+    },
+    "pl_ithaca": {
+      "title": "Ithaca",
+      "blurb": "The rocky homeland Odysseus fights to reach.",
+      "detail": "Odysseus' rugged island kingdom — the destination of the whole epic. Modest and stony, yet dearer to him than Calypso's paradise, Ithaca is the object of nostos, the longing for home."
+    },
+
+    "th_nostos": {
+      "title": "Nostos (Homecoming)",
+      "blurb": "The longing for home that drives everything.",
+      "detail": "Nostos — the return home — is the engine of the whole poem. Every trial is measured against Odysseus' refusal to give up Ithaca, even for immortality; the word is the root of our 'nostalgia'."
+    },
+    "th_hubris": {
+      "title": "Hubris & Divine Punishment",
+      "blurb": "Pride before the gods invites ruin.",
+      "detail": "Odysseus' boastful taunt to the blinded Polyphemus, and his crew's slaughter of the Sun-god's cattle, provoke divine retribution — the Greek warning that overreaching pride is answered by the gods."
+    },
+    "th_cunning": {
+      "title": "Cunning (Mêtis)",
+      "blurb": "Wits over brute strength.",
+      "detail": "Odysseus survives by mêtis — cleverness, trickery, disguise: the wooden horse, the 'Nobody' ruse, the beggar's rags. The Odyssey prizes intelligence as the truest heroic virtue."
+    },
+    "th_temptation": {
+      "title": "Temptation & Delay",
+      "blurb": "Comforts that would end the journey.",
+      "detail": "Circe, Calypso, the Lotus-eaters and the Sirens each offer forgetfulness or ease that would strand Odysseus forever. The theme tests whether he can hold to his purpose against pleasure."
+    },
+    "th_hospitality": {
+      "title": "Xenia (Hospitality)",
+      "blurb": "The sacred law of host and guest.",
+      "detail": "Xenia — guest-friendship — is the moral yardstick of the poem. Good hosts (Alcinous, Nausicaa) are rewarded; those who abuse it (the Cyclops, the suitors) are punished."
+    },
+    "th_loyalty": {
+      "title": "Loyalty",
+      "blurb": "Faith kept through twenty years.",
+      "detail": "Penelope's fidelity, Eurycleia's devotion, the loyal swineherd Eumaeus and the old dog Argos all embody constancy — set against the treachery of the suitors and faithless servants."
+    },
+    "th_identity": {
+      "title": "Identity & Disguise",
+      "blurb": "Who is the stranger at the door?",
+      "detail": "Odysseus returns hidden as a beggar and is revealed piece by piece — by scar, by bow, by the secret of the bed. The epic turns on recognition: proving who you truly are."
     }
   }
 }
